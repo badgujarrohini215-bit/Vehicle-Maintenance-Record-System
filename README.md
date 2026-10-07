@@ -1,85 +1,111 @@
-# Vehicle-Maintenance-Record-System
+# Vehicle Maintenance Record System
+
+A simple desktop-based **Vehicle Maintenance Record Management System** developed using **Python, Tkinter, and MySQL**.
+
 This project helps manage vehicle information and keep track of their maintenance and service records through a simple graphical user interface.
 
-Features
+## Features
 
-Login
+### Login
+- Username and password authentication
+- Simple login page
+- Logout functionality
 
-Username and password authentication
+### Dashboard
+- Vehicle Management
+- Maintenance Records
+- Back and Logout navigation
 
-Simple login page
+### Vehicle Management
+- Add vehicle records
+- View all vehicles
+- Update vehicle details
+- Delete vehicle records
+- Clear form fields
+- Store vehicle information in MySQL
 
-Logout functionality
+### Maintenance Management
+- Add maintenance records
+- View all maintenance records
+- Update maintenance details
+- Delete maintenance records
+- Clear form fields
+- Store maintenance information in MySQL
 
-Dashboard
+## Technologies Used
 
-Vehicle Management
+- **Python**
+- **Tkinter** – GUI
+- **MySQL** – Database
+- **mysql-connector-python** – Python-MySQL connection
 
-Maintenance Records
+## Database
+```text
+vehicle_management
+```
 
-Back and Logout navigation
+### Tables
 
-Vehicle Management
+#### vehicles
 
-Add vehicle records
+Stores vehicle details.
 
-View all vehicles
+```text
+vehicle_id
+vehicle_number
+owner_name
+vehicle_type
+brand
+model
+year
+contact
+```
 
-Update vehicle details
+#### maintenance
 
-Delete vehicle records
+Stores vehicle maintenance records.
 
-Clear form fields
-
-Store vehicle information in MySQL
-
-Maintenance Management
-
-Add maintenance records
-
-View all maintenance records
-
-Update maintenance details
-
-Delete maintenance records
-
-Clear form fields
-
-Store maintenance information in MySQL
-
-Technologies Used
-
-Python
-
-Tkinter – GUI
-
-MySQL – Database
-
-mysql-connector-python – Python-MySQL connection
-
-Database Setup
+```text
+maintenance_id
+vehicle_id
+service_date
+service_type
+description
+service_cost
+next_service_date
+mechanic_name
+remarks
+```
+## Database Setup
 
 Open MySQL and create the database:
 
+```sql
 CREATE DATABASE vehicle_management;
 
 USE vehicle_management;
+```
 
 Create the users table:
 
+```sql
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL
 );
+```
 
 Add a login user:
 
+```sql
 INSERT INTO users (username, password)
 VALUES ('admin', 'admin123');
+```
 
 Create the vehicles table:
 
+```sql
 CREATE TABLE vehicles (
     vehicle_id INT AUTO_INCREMENT PRIMARY KEY,
     vehicle_number VARCHAR(20) NOT NULL UNIQUE,
@@ -90,9 +116,11 @@ CREATE TABLE vehicles (
     year INT,
     contact VARCHAR(15)
 );
+```
 
 Create the maintenance table:
 
+```sql
 CREATE TABLE maintenance (
     maintenance_id INT AUTO_INCREMENT PRIMARY KEY,
     vehicle_id INT NOT NULL,
@@ -105,75 +133,31 @@ CREATE TABLE maintenance (
     remarks VARCHAR(255),
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
 );
-
-MySQL Connection
-
-In vehicle_management.py, update the database password:
-
+```
+```python
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="_",
     database="vehicle_management"
 )
-
-Replace YOUR_MYSQL_PASSWORD with your own MySQL password.
-
-Do not upload your real database password to GitHub.
-
-How to Run
-
-1. Clone the repository
-
-git clone YOUR_GITHUB_REPOSITORY_URL
-
-2. Open the project folder
-
-cd vehicle-maintenance-record-system
-
-3. Install the required package
-
-pip install mysql-connector-python
-
-4. Set up the MySQL database
-
-Run the SQL commands provided above in MySQL.
-
-5. Update the MySQL password
-
-Open:
-
-vehicle_management.py
-
-and enter your local MySQL password.
-
-6. Run the project
-
-python vehicle_management.py
-
-Login Details
+```
+## Login Details
 
 For the default user created in the database:
 
+```text
 Username: admin
 Password: admin123
-
-You can change the login details directly in the MySQL users table.
-
-Project Purpose
+```
+## Project Purpose
 
 The main purpose of this project is to practice:
 
-Python programming
-
-Tkinter GUI development
-
-MySQL database management
-
-CRUD operations
-
-Python and MySQL connectivity
-
-Form validation
-
-Basic desktop application development
+- Python programming
+- Tkinter GUI development
+- MySQL database management
+- CRUD operations
+- Python and MySQL connectivity
+- Form validation
+- Basic desktop application development
